@@ -224,6 +224,33 @@ class Hanoi:
 
         self.state = "START"
         root.mainloop()
+        
+class HanoiEngine:
+    def __init__(self, canvas, nrOfDiscs, speed, moveCntDisplay=None):
+        self.ts = canvas
+        self.ts.tracer(False)
+        # setup scene
+        self.designer = RawTurtle(canvas, shape="square")
+        self.designer.penup()
+        self.designer.shapesize(0.5, 21)
+        self.designer.goto(0, -80);
+        self.designer.stamp()
+        self.designer.shapesize(7, 0.5)
+        self.designer.fillcolor('yellow')
+        for x in -140, 0, 140:
+            self.designer.goto(x, -5);
+            self.designer.stamp()
+
+        self.nrOfDiscs = nrOfDiscs
+        self.speed = speed
+        self.moveDisplay = moveCntDisplay
+        self.running = False
+        self.moveCnt = 0
+        self.discs = [Disc(canvas) for i in range(10)]
+        self.towerA = Pole(-140)
+        self.towerB = Pole(0)
+        self.towerC = Pole(140)
+        self.ts.tracer(True)
 
 
 if __name__ == "__main__":
